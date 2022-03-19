@@ -1,6 +1,6 @@
 import express from "express";
 import nunjucks from "nunjucks";
-import fewlRequest from "@fewlines-education/request";
+import fetch from "node-fetch";
 
 const app = express();
 
@@ -12,32 +12,32 @@ nunjucks.configure("views", {
 });
 app.set("view engine", "njk");
 
-// function getCategories(): void {
-//   fewlRequest("https://swapi.dev/api/", (error, body) => {
-//     if (error) {
-//       console.error(error);
-//     } else {
-//       const data = JSON.parse(body);
-//       const patate = Object.keys(data);
-//       console.log("patate      ", patate);
-//     }
-//   });
-// }
-// console.log(getCategories());
+app.get("/", (res, response) => {
+  response.redirect("/home");
+});
 
-app.get("/", (request, response) => {
-  fewlRequest("https://swapi.dev/api/", (error, body) => {
-    if (error) {
-      console.error(error);
-      response.render("home");
-    } else {
-      const data = JSON.parse(body);
-      response.render("home", { categories: Object.keys(data) });
-      // const patate = Object.keys(data);
-      // console.log("patate      ", patate);
-    }
-  });
-  response.render("home");
+app.get("/home", (request, response) => {
+  fetch("https://swapi.dev/api/")
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("home", {
+        categories: Object.keys(data),
+        links: Object.values(data),
+      }),
+    );
+});
+
+app.get("/person/:id", (req, response) => {
+  const id = req.params.id;
+  fetch(`https://swapi.dev/api/people/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      // console.log(data)
+      response.render("person", {
+        name: data.name,
+        height: data.height,
+      }),
+    );
 });
 
 app.listen(3000, () => {

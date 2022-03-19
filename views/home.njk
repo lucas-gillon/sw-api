@@ -1,9 +1,16 @@
 {% extends "layout.njk" %}
 
 {% block content %}
-
-
-<h1>What a great title</h1>
-  {{ categories.categories[0] }}
+  <div>
+    {% for category in categories %}
+      <ul>
+        <li>
+          <a href="http://google.fr" target="_blank">
+            <u>{{category}}</u>
+          </a>
+        </li>
+      </ul>
+    {% endfor %}
+  </div>
 
 {% endblock %}
