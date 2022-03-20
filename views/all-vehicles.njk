@@ -1,0 +1,14 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+{{url_splitted}}
+
+{% for vehicle in vehicles %}
+
+    <a href="/vehicles/{{loop.index}}">
+      <li>{{vehicle.name}}</li>
+    </a>
+  {% endfor %}
+
+{% endblock %}

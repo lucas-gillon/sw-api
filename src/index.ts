@@ -1,6 +1,7 @@
 import express from "express";
 import nunjucks from "nunjucks";
 import fetch from "node-fetch";
+import moment from "moment";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/", (res, response) => {
   response.redirect("/home");
 });
 
+// Home
 app.get("/home", (request, response) => {
   fetch("https://swapi.dev/api/")
     .then((response) => response.json())
@@ -91,10 +93,67 @@ app.get("/films/:id", (req, response) => {
     .then((data) =>
       response.render("one-film", {
         film: data,
+        release_date: moment(data.release_date).format("MMMM Do YYYY"),
       }),
     );
 });
 
-app.listen(3000, () => {
-  console.log("Server started on http://localhost:3000");
+// List all species
+app.get("/species", (res, response) => {
+  fetch(`https://swapi.dev/api/species`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("all-species", {
+        species: data.results,
+      }),
+    );
+});
+
+// Display a specific specie infos
+app.get("/species/:id", (req, response) => {
+  const id = req.params.id;
+  fetch(`https://swapi.dev/api/species/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("one-specie", {
+        specie: data,
+        eye_colors: data.eye_colors.split(" "),
+        hair_colors: data.hair_colors.split(" "),
+      }),
+    );
+});
+
+// List all vehicles
+app.get("/vehicles", (res, response) => {
+  fetch(`https://swapi.dev/api/vehicles`)
+    .then((response) => response.json())
+    .then((data) => {
+      const splitUrls = (): void => {
+        data.results.map((element: { url: string }) => {
+          console.log(element.url.split("/")[5]);
+        });
+      };
+      const patate = splitUrls();
+      console.log(patate);
+      response.render("all-vehicles", {
+        vehicles: data.results,
+        url_splitted: data.results[0].url.split("/")[5],
+      });
+    });
+});
+
+// Display a specific vehicle infos
+app.get("/vehicles/:id", (req, response) => {
+  const id = req.params.id;
+  fetch(`https://swapi.dev/api/vehicles/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("one-vehicle", {
+        vehicle: data,
+      }),
+    );
+});
+
+app.listen(8080, () => {
+  console.log("Server started on http://localhost:8080");
 });

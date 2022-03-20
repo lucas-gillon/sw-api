@@ -1,0 +1,47 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <u>Name:</u>
+  {{specie.name}}<br>
+
+  <u>Average lifespan:</u>
+  {{specie.average_lifespan}}<br>
+
+  <u>Language:</u>
+  {{specie.language}}<br>
+
+  <u>Skin colors:</u>
+  {{specie.skin_colors}}<br>
+
+  <u>Average height:</u>
+  {{specie.average_height}} cm<br>
+
+  <u>Eye colors:</u>
+  {% for color in eye_colors %}
+    <li>{{color}}</li>
+  {% endfor %}
+  <br>
+
+  <u>Eye colors:</u>
+  {% for color in hair_colors %}
+    <li>{{color}}</li>
+  {% endfor %}
+  <br>
+
+  <u>Homeworld:</u>
+  {{specie.homeworld}}<br>
+
+  <u>People:</u>
+  {% for person in specie.people %}
+    <li>{{person}}</li>
+  {% endfor %}
+  <br>
+
+  <u>Films:</u>
+  {% for film in specie.films %}
+    <li>{{film}}</li>
+  {% endfor %}
+  <br>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+{% for specie in species %}
+
+    <a href="/species/{{loop.index}}">
+      <li>{{specie.name}}</li>
+    </a>
+  {% endfor %}
+
+{% endblock %}

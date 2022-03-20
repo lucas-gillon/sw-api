@@ -6,6 +6,7 @@
     <h2>Infos for <u>{{film.title}}</u>:</h2>
   </center>
   <div>
+
     <u>Name:</u>
     {{film.title}}<br>
 
@@ -20,6 +21,49 @@
 
     <u>Producer:</u>
     {{film.producer}}<br>
+
+    <u>Release date:</u>
+    {{release_date}}<br>
+
+    {% if film.characters | length %}
+      <u>Characters:</u>
+      {% for character in film.characters %}
+        <li>{{character}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if film.planets | length %}
+      <u>Planets:</u>
+      {% for planet in film.planets %}
+        <li>{{planet}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if film.starships | length %}
+      <u>Starships:</u>
+      {% for starship in film.starships %}
+        <li>{{starship}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if film.vehicles | length %}
+      <u>Vehicles:</u>
+      {% for vehicle in film.vehicles %}
+        <li>{{vehicle}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if film.species | length %}
+      <u>Species:</u>
+      {% for specie in film.species %}
+        <li>{{specie}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
 
   </div>
 
