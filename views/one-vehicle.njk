@@ -2,6 +2,44 @@
 
 {% block content %}
 
-  {{vehicle.name}}
+  <u>Name:</u>
+  {{vehicle.name}}<br>
+
+  <u>Model:</u>
+  {{vehicle.model}}<br>
+
+  <u>Vehicle class:</u>
+  {{vehicle.vehicle_class}}<br>
+
+  <u>Cost in credits:</u>
+  {{vehicle.cost_in_credits}}<br>
+
+  <u>Crew:</u>
+  {{vehicle.crew}}<br>
+
+  <u>Length:</u>
+  {{vehicle.length}}<br>
+
+  <u>Max speed:</u>
+  {{vehicle.max_atmosphering_speed}}<br>
+
+  <u>Number of passengers:</u>
+  {{vehicle.passengers}}<br>
+
+  {% if vehicle.pilots | length %}
+    <u>Pilots:</u>
+    {% for pilot in vehicle.pilots %}
+      <li>{{pilot}}</li>
+    {% endfor %}
+  {% endif %}
+  <br>
+
+  {% if vehicle.films | length %}
+    <u>Films:</u>
+    {% for film in vehicle.films %}
+      <li>{{film}}</li>
+    {% endfor %}
+  {% endif %}
+  <br>
 
 {% endblock %}

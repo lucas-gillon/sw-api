@@ -2,13 +2,12 @@
 
 {% block content %}
 
-{{url_splitted}}
+  {% for vehicle in vehicles %}
 
-{% for vehicle in vehicles %}
-
-    <a href="/vehicles/{{loop.index}}">
+    <a href="/vehicles/{{gameID[loop.index - 1]}}">
       <li>{{vehicle.name}}</li>
     </a>
+
   {% endfor %}
 
 {% endblock %}

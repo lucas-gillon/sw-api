@@ -1,0 +1,15 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+
+ {% for starship in starships %}
+
+    <a href="/starships/{{starshipID[loop.index - 1]}}">
+      <li>{{starship.name}}</li>
+    </a>
+
+  {% endfor %}
+
+
+{% endblock %}

@@ -117,6 +117,7 @@ app.get("/species/:id", (req, response) => {
     .then((data) =>
       response.render("one-specie", {
         specie: data,
+        // split string to obtain an array of strings
         eye_colors: data.eye_colors.split(" "),
         hair_colors: data.hair_colors.split(" "),
       }),
@@ -128,16 +129,17 @@ app.get("/vehicles", (res, response) => {
   fetch(`https://swapi.dev/api/vehicles`)
     .then((response) => response.json())
     .then((data) => {
-      const splitUrls = (): void => {
-        data.results.map((element: { url: string }) => {
-          console.log(element.url.split("/")[5]);
+      // get id of a game from url
+      const splitUrls = (): string[] => {
+        return data.results.map((element: { url: string }) => {
+          // transform id from string to number
+          return parseInt(element.url.split("/")[5]);
         });
       };
-      const patate = splitUrls();
-      console.log(patate);
+      const gameID = splitUrls();
       response.render("all-vehicles", {
         vehicles: data.results,
-        url_splitted: data.results[0].url.split("/")[5],
+        gameID: gameID,
       });
     });
 });
@@ -150,6 +152,38 @@ app.get("/vehicles/:id", (req, response) => {
     .then((data) =>
       response.render("one-vehicle", {
         vehicle: data,
+      }),
+    );
+});
+
+// List of all starships
+app.get("/starships", (req, response) => {
+  fetch(`https://swapi.dev/api/starships`)
+    .then((response) => response.json())
+    .then((data) => {
+      // get id of a game from url
+      const splitUrls = (): string[] => {
+        return data.results.map((element: { url: string }) => {
+          // transform id from string to number
+          return parseInt(element.url.split("/")[5]);
+        });
+      };
+      const starshipID = splitUrls();
+      response.render("all-starships", {
+        starships: data.results,
+        starshipID: starshipID,
+      });
+    });
+});
+
+// Display a specific vehicle infos
+app.get("/starships/:id", (req, response) => {
+  const id = req.params.id;
+  fetch(`https://swapi.dev/api/starships/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("one-starship", {
+        starship: data,
       }),
     );
 });
