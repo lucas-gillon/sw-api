@@ -60,6 +60,7 @@
     "@fewlines-education/request": "^0.0.1",
     "express": "^4.17.2",
     "fetch": "^1.1.0",
+    "moment": "^2.29.1",
     "nunjucks": "^3.2.3"
   }
 }

@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  {% for person in people %}
+
+    <a href="/people/{{loop.index}}">
+      <li>{{person.name}}</li>
+    </a>
+  {% endfor %}
+
+{% endblock %}

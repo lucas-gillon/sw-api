@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  {% for film in films %}
+
+    <a href="/films/{{loop.index}}">
+      <li>{{film.title}}</li>
+    </a>
+  {% endfor %}
+
+{% endblock %}

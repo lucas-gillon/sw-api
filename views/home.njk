@@ -2,15 +2,15 @@
 
 {% block content %}
   <div>
-    {% for category in categories %}
-      <ul>
-        <li>
-          <a href="http://google.fr" target="_blank">
-            <u>{{category}}</u>
-          </a>
-        </li>
-      </ul>
-    {% endfor %}
+    <ul>
+      {% for category in categories %}
+        <a href="/{{category}}">
+          <li>
+            <u>{{category | capitalize}}</u>
+          </li>
+        </a>
+      {% endfor %}
+    </ul>
   </div>
 
 {% endblock %}

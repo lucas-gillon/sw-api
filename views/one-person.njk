@@ -1,0 +1,54 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <center>
+    <h2>Infos for <u>{{person.name}}</u>:</h2>
+  </center>
+  <div>
+    <u>Name:</u>
+    {{person.name}}<br>
+
+    <u>Gender:</u>
+    {{person.gender | capitalize}}<br>
+
+    <u>Height:</u>
+    {{person.height}} cm<br>
+
+    <u>Hair color:</u>
+    {{person.hair_color | capitalize}}<br>
+
+    <u>Birth year:</u>
+    {{person.birth_year}} (BBY: Before Battle of Yavin) <br>
+
+    <u>Homeworld:</u>
+    {{person.homeworld}}<br>
+
+    {% if person.films | length %}
+      <u>Films:</u>
+      {% for film in person.films %}
+        <li>
+          {{film}}
+        </li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if person.vehicles | length %}
+      <u>Vehicles:</u>
+      {% for vehicle in person.vehicles %}
+        <li>{{vehicle}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if person.starships | length %}
+      <u>Starships:</u>
+      {% for starship in person.starships %}
+        <li>{{starship}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+  </div>
+
+{% endblock %}

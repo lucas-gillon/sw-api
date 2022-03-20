@@ -1,0 +1,44 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <center>
+    <h2>Infos for <u>{{planet.name}}</u>:</h2>
+  </center>
+  <div>
+    <u>Name:</u>
+    {{planet.name}}<br>
+
+    <u>Climate:</u>
+    {{planet.climate | capitalize}}<br>
+
+    <u>Terrain:</u>
+    {{planet.terrain | capitalize}}<br>
+
+    <u>Gravity:</u>
+    {{planet.gravity}}<br>
+
+    <u>Population:</u>
+    {{planet.population}}<br>
+
+    {% if planet.residents | length %}
+      <u>Residents:</u>
+      {% for resident in planet.residents %}
+        <li>{{resident}}</li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+    {% if planet.films | length %}
+      <u>Films:</u>
+      {% for film in planet.films %}
+        <li>
+          {{film}}
+        </li>
+      {% endfor %}
+    {% endif %}
+    <br>
+
+  </div>
+
+{% endblock %}

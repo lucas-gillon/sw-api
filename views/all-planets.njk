@@ -1,0 +1,12 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+{% for planet in planets %}
+
+    <a href="/planets/{{loop.index}}">
+      <li>{{planet.name}}</li>
+    </a>
+  {% endfor %}
+
+{% endblock %}

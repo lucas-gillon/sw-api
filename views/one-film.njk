@@ -1,0 +1,26 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <center>
+    <h2>Infos for <u>{{film.title}}</u>:</h2>
+  </center>
+  <div>
+    <u>Name:</u>
+    {{film.title}}<br>
+
+    <u>Episode:</u>
+    {{film.episode_id}}<br>
+
+    <u>Opening crawl:</u>
+    <div>{{film.opening_crawl}}</div><br>
+
+    <u>Director:</u>
+    {{film.director}}<br>
+
+    <u>Producer:</u>
+    {{film.producer}}<br>
+
+  </div>
+
+{% endblock %}

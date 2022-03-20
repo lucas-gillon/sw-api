@@ -22,20 +22,75 @@ app.get("/home", (request, response) => {
     .then((data) =>
       response.render("home", {
         categories: Object.keys(data),
-        links: Object.values(data),
       }),
     );
 });
 
-app.get("/person/:id", (req, response) => {
+// List all people
+app.get("/people", (req, response) => {
+  fetch(`https://swapi.dev/api/people/`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("all-people", {
+        people: data.results,
+      }),
+    );
+});
+
+// Display a specific person infos
+app.get("/people/:id", (req, response) => {
   const id = req.params.id;
   fetch(`https://swapi.dev/api/people/${id}`)
     .then((response) => response.json())
     .then((data) =>
-      // console.log(data)
-      response.render("person", {
-        name: data.name,
-        height: data.height,
+      response.render("one-person", {
+        person: data,
+      }),
+    );
+});
+
+// List all planets
+app.get("/planets", (res, response) => {
+  fetch(`https://swapi.dev/api/planets`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("all-planets", {
+        planets: data.results,
+      }),
+    );
+});
+
+// Display a specific planet infos
+app.get("/planets/:id", (res, response) => {
+  const id = res.params.id;
+  fetch(`https://swapi.dev/api/planets/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("one-planet", {
+        planet: data,
+      }),
+    );
+});
+
+// List all films
+app.get("/films", (res, response) => {
+  fetch(`https://swapi.dev/api/films`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("all-films", {
+        films: data.results,
+      }),
+    );
+});
+
+// Display a specific film infos
+app.get("/films/:id", (req, response) => {
+  const id = req.params.id;
+  fetch(`https://swapi.dev/api/films/${id}`)
+    .then((response) => response.json())
+    .then((data) =>
+      response.render("one-film", {
+        film: data,
       }),
     );
 });
